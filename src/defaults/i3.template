@@ -202,6 +202,23 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
+bar {
+  status_command i3status
+# strip_workspace_numbers yes
+  tray_output none
+  
+  colors {
+	    statusline  #978965
+	    background  #1f1f1f
+
+      #name              #border #bg     #text
+	    focused_workspace  #978965 #402e2e #978965
+	    active_workspace   #402e2e #402e2e #978965
+	    inactive_workspace #402e2e #402e2e #978965
+	    urgent_workspace   #402e2e #402e2e #978965
+  }
+}
+
 # Autostart applications
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
@@ -210,53 +227,15 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id /$HOME/.config/polybar/i3wmthemer_bar_launch.sh
 
 # Theme colors
-client.focused          #272827 #272827 #657b83 #272827 #272827
-client.focused_inactive #272827 #272827 #657b83 #272827 #272827
-client.unfocused        #272827 #272827 #657b83 #272827 #272827
-client.urgent           #272827 #272827 #657b83 #272827 #272827
-client.placeholder      #272827 #272827 #657b83 #272827 #272827
+client.focused #bfbfbf #162025 #bfbfbf #39402e #39402e
+client.focused_inactive #bfbfbf #162025 #bfbfbf #75404b #75404b
+client.unfocused #bfbfbf #162025 #bfbfbf #75404b #75404b
+client.urgent #bfbfbf #162025 #bfbfbf #75404b #75404b
+client.placeholder #bfbfbf #162025 #bfbfbf #75404b #75404b
 
-client.background       #272827
-
-# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
-
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+client.background #162025
 
 # set power-manager and volume control
 exec --no-startup-id mate-power-manager
