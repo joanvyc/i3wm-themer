@@ -31,13 +31,6 @@ def install_defaults( temp_folder, configuration ):
             else:
                 prnt.prnt( '-f', 'Failed!')
 
-        # Install default polybar file
-        if 'polybar-config' in configuration:
-            if( install_file( configuration, 'polybar-config', temp_folder+'polybar.template')):
-               prnt.prnt( '-s', 'Success!')
-            else:
-                prnt.prnt( '-f', 'Failed!')
-
         # Install default Xresources file
         if 'xresources' in configuration:
             if( install_file( configuration, 'xresources', temp_folder+'xresources.template')):

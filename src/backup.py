@@ -31,13 +31,6 @@ def backup_config( backup_folder, configuration):
             else:
                 prnt.prnt( '-f', 'Failed!')
 
-        # Backup Polybr config
-        if 'polybar-config' in configuration:
-            if( backup_file( configuration, 'polybar-config', backup_folder+'/polybar.config')):
-                prnt.prnt( '-s', 'Success!')
-            else:
-                prnt.prnt( '-f', 'Failed!')
-
         # Backup xresources
         if 'xresources' in configuration:
             if( backup_file( configuration, 'xresources', backup_folder+'/xresources')):

@@ -10,28 +10,7 @@ sudo pacman -Syy
 
 #added binutils,gcc,make,pkg-config,fakeroot for compilations, removed yaourt
 #added python-yaml, removed pip install
-sudo pacman -S git nitrogen rofi python-pip ttf-font-awesome adobe-source-code-pro-fonts binutils gcc make pkg-config fakeroot python-yaml --noconfirm
-
-# Look for and use common AUR helpers from https://wiki.archlinux.org/index.php/AUR_helpers#Pacman_wrappers
-if [ -x "$(command -v yay)" ]; then
-    yay -S polybar-git ttf-nerd-fonts-symbols
-elif [ -x "$(command -v trizen)" ]; then
-    trizen -S polybar-git ttf-nerd-fonts-symbols
-elif [ -x "$(command -v pikaur)" ]; then
-    pikaur -S polybar-git ttf-nerd-fonts-symbols
-elif [ -x "$(command -v pakku)" ]; then
-    pakku -S polybar-git ttf-nerd-fonts-symbols
-elif [ -x "$(command -v aura)" ]; then
-    aura -SA polybar-git ttf-nerd-fonts-symbols
-elif [ -x "$(command -v pacaur)" ]; then
-    pacaur -S polybar-git ttf-nerd-fonts-symbols
-else
-    echo "No common AUR Helpers found!"
-    echo "This script requires an AUR Helper to install the following packages: polybar-git ttf-nerd-fonts-symbols"
-    echo "Please install an AUR helper and try again"
-    exit 1
-fi
-
+sudo pacman -S git nitrogen rofi binutils gcc make pkg-config fakeroot python-yaml --noconfirm
 
 #file didn't exist for me, so test and touch
 if [ -e $HOME/.Xresources ]
@@ -51,15 +30,6 @@ else
 fi
 
 #file didn't exist for me, so test and touch
-if [ -e $HOME/.config/polybar/config ]
-then
-        echo "... polybar/config found."
-else
-	mkdir -p $HOME/.config/polybar
-        touch $HOME/.config/polybar/config
-fi
-
-#file didn't exist for me, so test and touch
 if [ -e $HOME/.config/i3/config ]
 then
         echo "... i3/config found."
@@ -75,12 +45,12 @@ cp defaults/config.yaml .
 sed -i -e "s/USER/$USER/g" config.yaml
 
 #backup
-mkdir $HOME/Backup
-python i3wm-themer.py --config config.yaml --backup $HOME/Backup
+mkdir $HOME/.i3-theme-backup
+python i3wm-themer.py --config config.yaml --backup $HOME/.i3-theme-backup
 
 #configure and set theme to 000
-cp -r ../scripts/* /home/$USER/.config/polybar/
 python i3wm-themer.py --config config.yaml --install defaults/
+python i3wm-themer.py --config config.yaml --load themes/002.json
 
 echo ""
 echo "Read the README.md"

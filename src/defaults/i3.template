@@ -1,13 +1,9 @@
-set $mod Mod1
+set $mod Mod4
 
 new_window pixel 1
 new_float normal
 
 hide_edge_borders none
-
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
 
 font xft:URWGothic-Book 11
 
@@ -224,12 +220,6 @@ client.urgent           #272827 #272827 #657b83 #272827 #272827
 client.placeholder      #272827 #272827 #657b83 #272827 #272827
 
 client.background       #272827
-
-# Gaps
-gaps inner 10
-gaps outer -4
-
-smart_gaps on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
